@@ -1,0 +1,38 @@
+name: frontend
+description: A new Flutter project.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.3 <3.0.0"
+
+dependencies:
+  content:
+    path: modules/content
+  core:
+    path: modules/core
+
+  flutter:
+    sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+
+  easy_localization: ^3.0.1
+  gap: ^2.0.0
+  hooks_riverpod: ^1.0.4
+  logging: ^1.0.2
+  nil: ^1.1.1
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  freezed: ^2.0.3+1
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - assets/translations/

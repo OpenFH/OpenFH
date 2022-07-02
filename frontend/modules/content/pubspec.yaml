@@ -1,0 +1,27 @@
+name: content
+publish_to: none
+
+environment:
+  sdk: ">=2.17.3 <3.0.0"
+
+dependencies:
+  core:
+    path: ../core
+
+  flutter:
+    sdk: flutter
+
+  drift: ^1.7.0                   # (drift) orm for sqlite
+  sqlite3_flutter_libs: ^0.5.8    # (drift) native sqlite3 libraries used by drift
+  path_provider: ^2.0.11          # (drift) used to get application paths
+  path: ^1.8.2                    # (drift) used to create database files
+
+  freezed_annotation: ^2.0.3      
+  state_notifier: ^0.7.2+1        # state management
+  riverpod: ^1.0.3                # state management
+  get_it: ^7.2.0                  # dependency-injection / service-locator
+
+dev_dependencies:
+  drift_dev: ^1.7.0               # (drift) drift dev tools
+  build_runner: ^2.1.11           # code generation / dev tools
+  freezed: ^2.0.3+1               # sealed data classes and code generation
