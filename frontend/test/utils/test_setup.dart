@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 class TestSetup {
   static Future<void> setupLocalization() async {
     WidgetsFlutterBinding.ensureInitialized();
+    EasyLocalization.logger.enableBuildModes = [];
     await EasyLocalization.ensureInitialized();
   }
 }
