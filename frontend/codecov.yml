@@ -1,0 +1,5 @@
+ignore:
+  - '**/*.g.dart'
+  - '**/main.dart'
+  - '**/app.dart'
+  - '**/theme'
