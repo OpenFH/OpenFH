@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="http://infotition.de">
-    <img src="./.github/assets/logo.png" width="250" alt="OpenFh logo" />
+    <img src="./.github/assets/logo.png" width="250" alt="OpenFh logo" style="margin-bottom: 1rem" />
   </a>
 
   <br />
