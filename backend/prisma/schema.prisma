@@ -8,9 +8,8 @@ generator client {
 }
 
 model Person {
-  id    Int     @default(autoincrement()) @id
-  email String  @unique
-  firstName  String
+  id Int @id @default(autoincrement())
+  firstName String
   lastName String
-  phoneNumber String?
+  phoneNumber String
 }

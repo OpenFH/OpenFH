@@ -1,29 +1,19 @@
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
-import { PrismaModule } from './prisma/prisma.module';
-import { PersonModule } from './person/person.module';
+import { PersonModule } from './features/person/person.module';
+import { PrismaService } from './features/prisma/prisma.service';
 
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      playground: false,
-      plugins: [ApolloServerPluginLandingPageLocalDefault()],
-      typePaths: ['./**/*.graphql'],
-      definitions: {
-        path: join(process.cwd(), 'src/types/graphql.ts'),
-        outputAs: 'class',
-      },
+      autoSchemaFile: join(process.cwd(), 'src/types/schema.gql'),
+      sortSchema: true,
     }),
-    PrismaModule,
     PersonModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  providers: [PrismaService],
 })
 export class AppModule {}
