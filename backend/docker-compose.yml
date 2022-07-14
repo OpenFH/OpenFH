@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  database:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=Universe
+      - POSTGRES_PASSWORD=Stardust
+      - POSTGRES_DB=openfh
+
+  cache:
+    image: redis:latest
+    command: redis-server --requirepass ${REDIS_PW}
+    ports:
+      - 6379-6379
+
+  backend:
+    build: ./
+    ports:
+      - ${PORT}:${PORT}
