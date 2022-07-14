@@ -14,8 +14,3 @@ services:
     image: redis:latest
     ports:
       - "${REDIS_PORT}:${REDIS_PORT}"
-
-  #backend:
-  #  build: ./
-  #  ports:
-  #    - ${PORT}:${PORT}
