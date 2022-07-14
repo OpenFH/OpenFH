@@ -1,8 +1,8 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { PersonService } from './person.service';
-import { Person } from './entities/person.entity';
 import { CreatePersonInput } from './dto/create-person.input';
 import { UpdatePersonInput } from './dto/update-person.input';
+import { Person } from './entities/person.entity';
+import { PersonService } from './person.service';
 
 @Resolver(() => Person)
 export class PersonResolver {
