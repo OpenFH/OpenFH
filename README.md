@@ -8,8 +8,6 @@
 
   <br />
 
-  <h3 align="center">OpenFH</h3>
-
   <p align="center">
     OpenFH is a modern an open source implementation of the FH Erfurt mobile application with an improved and working backend.
     <br />
@@ -38,7 +36,6 @@
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#getting-started">Getting Started</a></li>
-    <li><a href="#module-overview">Module Overview</a></li>
     <li><a href="#development">Development</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#issue-reporting">Issue Reporting</a></li>
@@ -63,7 +60,7 @@ If you want to develop the flutter application, always use the [Figma Design](ht
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Contribution
+## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
