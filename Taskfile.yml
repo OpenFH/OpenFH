@@ -1,0 +1,47 @@
+version: '3'
+
+tasks:
+  validate-installation:
+    cmds:
+      - |
+        if ! [ -x "$(command -v {{.COMMAND}})" ]; then 
+          echo -e "${red}Error: {{.COMMAND}} is not installed on your machine." >&2
+          exit 127
+        fi
+    silent: true
+
+  validate-tools:
+    cmds:
+      - task: validate-installation
+        vars: { COMMAND: git }
+      - task: validate-installation
+        vars: { COMMAND: npm }
+      - task: validate-installation
+        vars: { COMMAND: node }
+      - task: validate-installation
+        vars: { COMMAND: yarn }
+      - task: validate-installation
+        vars: { COMMAND: docker }
+      - task: validate-installation
+        vars: { COMMAND: docker-compose }
+
+  setup-dev-environment:
+    dir: ./backend
+    desc: Setups up dev environment including redis and postgres-containers.
+    deps: [validate-tools]
+    cmds:
+      - yarn
+      - cp .env.development.example .env
+      - docker-compose -f docker-compose.dev.yml up -d
+
+  deploy-service: 
+    dir: ./backend
+    desc: Deploys the service including setting up the .env
+    deps: [validate-tools]
+    cmds:
+      - cp .env.production.example .env
+      - docker-compose -f docker-compose.yml up -d --build
+
+  default:
+    cmds:
+      - task: setup-dev-environment
