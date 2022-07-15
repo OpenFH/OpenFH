@@ -1,21 +1,38 @@
 version: '3'
 
 services:
-  database:
+  postgres:
     image: postgres:latest
+    container_name: postgres
     ports:
       - 5432:5432
     environment:
       - POSTGRES_USER=Universe
       - POSTGRES_PASSWORD=Stardust
       - POSTGRES_DB=openfh
+    networks:
+      - person-service
 
   cache:
     image: redis:latest
+    container_name: redis
+    command: redis-server --requirepass ${REDIS_PW}
     ports:
       - "${REDIS_PORT}:${REDIS_PORT}"
+    networks:
+      - person-service
 
-  #backend:
-  #  build: ./
-  #  ports:
-  #    - ${PORT}:${PORT}
+  backend:
+    build: 
+      context: ./
+    ports:
+      - ${PORT}:${PORT}
+    depends_on:
+      - database
+      - cache
+    networks:
+      - person-service
+
+networks:
+  person-service:
+    driver: bridge
