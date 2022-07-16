@@ -1,0 +1,22 @@
+version: '3'
+
+includes:
+  lib: ../Taskfile.lib.yml
+
+tasks:
+  setup-dev-env:
+    deps: [lib:validate-backend-dev-tools]
+    desc: Setups up dev environment including redis, postgres and the .env file
+    cmds:
+      - docker-compose down --rmi local
+      - yarn
+      - cp .env.development.example .env
+      - docker-compose -f docker-compose.dev.yml up -d
+
+  deploy-service:
+    deps: [lib:validate-deploy-tools]
+    desc: Deploys the service including setting up the .env file
+    cmds:
+      - docker-compose down --rmi local
+      - cp .env.production.example .env
+      - docker-compose -f docker-compose.yml up -d --build

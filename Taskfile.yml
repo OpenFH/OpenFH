@@ -1,47 +1,21 @@
 version: '3'
 
+includes: 
+  backend: 
+    taskfile: ./backend/Taskfile.yml
+    dir: ./backend
+
 tasks:
-  validate-installation:
+  setup-backend-dev-env:
+    desc: copies the .env file and setups the backend dev tools (all necessary tools need to be installed)
     cmds:
-      - |
-        if ! [ -x "$(command -v {{.COMMAND}})" ]; then 
-          echo -e "${red}Error: {{.COMMAND}} is not installed on your machine." >&2
-          exit 127
-        fi
-    silent: true
+      - task: backend:setup-dev-env
 
-  validate-tools:
-    cmds:
-      - task: validate-installation
-        vars: { COMMAND: git }
-      - task: validate-installation
-        vars: { COMMAND: npm }
-      - task: validate-installation
-        vars: { COMMAND: node }
-      - task: validate-installation
-        vars: { COMMAND: yarn }
-      - task: validate-installation
-        vars: { COMMAND: docker }
-      - task: validate-installation
-        vars: { COMMAND: docker-compose }
-
-  setup-dev-environment:
-    dir: ./backend
-    desc: Setups up dev environment including redis and postgres-containers.
-    deps: [validate-tools]
-    cmds:
-      - yarn
-      - cp .env.development.example .env
-      - docker-compose -f docker-compose.dev.yml up -d
-
-  deploy-service: 
-    dir: ./backend
-    desc: Deploys the service including setting up the .env
-    deps: [validate-tools]
-    cmds:
-      - cp .env.production.example .env
-      - docker-compose -f docker-compose.yml up -d --build
+  deploy-backend-service:
+    desc: deploys the backend
+    cmds: 
+      - task: backend:deploy-service
 
   default:
     cmds:
-      - task: setup-dev-environment
+      - task: setup-backend-dev-env
