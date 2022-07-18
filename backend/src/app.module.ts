@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+
 import { GraphQlModule } from './config/graphql';
 import { CacheModule } from './config/redis';
 import { PersonModule } from './features/person/person.module';

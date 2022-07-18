@@ -52,12 +52,8 @@ backend/prisma/**/migrations
 backend/prisma/**/dev.db*
 backend/src/types/schema.gql
 backend/**/.env
+backend/src/types
 
 # Logs
 **/logs
 **/*.log
-**/npm-debug.log*
-**/pnpm-debug.log*
-**/yarn-debug.log*
-**/yarn-error.log*
-**/lerna-debug.log*

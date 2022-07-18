@@ -1,7 +1,7 @@
 version: '3'
 
 includes:
-  lib: ../Taskfile.lib.yml
+  lib: ../misc/Taskfile.lib.yml
 
 tasks:
   setup-dev-env:
@@ -10,7 +10,7 @@ tasks:
     cmds:
       - docker-compose down --rmi local
       - yarn
-      - cp .env.development.example .env
+      - cp ./misc/.env.development.example .env
       - docker-compose -f docker-compose.dev.yml up -d
 
   deploy-service:
@@ -18,5 +18,5 @@ tasks:
     desc: Deploys the service including setting up the .env file
     cmds:
       - docker-compose down --rmi local
-      - cp .env.production.example .env
+      - cp ./misc/.env.production.example .env
       - docker-compose -f docker-compose.yml up -d --build
