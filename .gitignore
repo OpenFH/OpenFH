@@ -29,7 +29,7 @@ migrate_working_dir/
 build/
 
 # Web related
-lib/generated_plugin_registrant.dart
+lib/generated_plugin_registrant.darts
 
 # Symbolication related
 app.*.symbols
@@ -44,3 +44,16 @@ android/app/release
 
 # Generated
 **/coverage
+
+# backend
+backend/**/dist
+backend/**/node_modules
+backend/prisma/**/migrations
+backend/prisma/**/dev.db*
+backend/src/types/schema.gql
+backend/**/.env
+backend/src/types
+
+# Logs
+**/logs
+**/*.log

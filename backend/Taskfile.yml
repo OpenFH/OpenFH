@@ -1,0 +1,36 @@
+version: '3'
+
+includes:
+  lib: ../misc/Taskfile.lib.yml
+
+tasks:
+  setup-dev-env:
+    dir: ./
+    deps: [lib:validate-backend-dev-tools]
+    desc: Setups up dev environment including redis, postgres and the .env file
+    silent: true
+    cmds:
+      - docker-compose down
+      - yarn
+      - |
+        {{if eq OS "windows"}}
+          Powershell copy ./misc/.env.development.example .env
+        {{else}}
+          cp ./misc/.env.development.example .env
+        {{end}}
+      - docker-compose -f docker-compose.dev.yml up -d
+
+  deploy-service:
+    silent: true
+    dir: ./
+    deps: [lib:validate-deploy-tools]
+    desc: Deploys the service including setting up the .env file
+    cmds:
+      - docker-compose down
+      - |
+        {{if eq OS "windows"}}
+          Powershell cp ./misc/.env.production.example .env
+        {{else}}
+          cp ./misc/.env.production.example .env
+        {{end}}
+      - docker-compose -f docker-compose.yml up -d
