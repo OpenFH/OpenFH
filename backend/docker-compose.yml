@@ -13,7 +13,7 @@ services:
     networks:
       - person-service
 
-  cache:
+  redis:
     image: redis:latest
     container_name: redis
     command: redis-server --requirepass ${REDIS_PW}
@@ -36,3 +36,4 @@ services:
 networks:
   person-service:
     driver: bridge
+  

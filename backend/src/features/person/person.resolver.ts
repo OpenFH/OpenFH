@@ -15,7 +15,7 @@ export class PersonResolver {
     return this.personService.create(createPersonInput);
   }
 
-  @Query(() => [Person], { name: 'person' })
+  @Query(() => [Person], { name: 'persons' })
   findAll() {
     return this.personService.findAll();
   }
